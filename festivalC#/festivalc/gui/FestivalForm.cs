@@ -1,4 +1,5 @@
 ﻿using festivalc.model;
+using festivalc.repository;
 using festivalc.service;
 using System;
 using System.Collections.Generic;
@@ -104,6 +105,15 @@ namespace festivalc.gui
         private void cumparaButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            UserDBRepository userRepo = new UserDBRepository();
+            LoginService loginService = new LoginService(userRepo);
+            LoginForm loginForm = new LoginForm(loginService);
+            loginForm.Show();
         }
     }
 }

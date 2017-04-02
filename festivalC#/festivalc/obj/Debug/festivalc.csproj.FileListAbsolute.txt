@@ -38,3 +38,23 @@ D:\Faculta\An 2\Semestrul 2\MPP\Laborator\festivalC#\festivalc\obj\Debug\festiva
 D:\Faculta\An 2\Semestrul 2\MPP\Laborator\festivalC#\festivalc\obj\Debug\festivalc.LoginForm.resources
 D:\Faculta\An 2\Semestrul 2\MPP\Laborator\festivalC#\festivalc\obj\Debug\festivalc.Properties.Resources.resources
 D:\Faculta\An 2\Semestrul 2\MPP\Laborator\festivalC#\festivalc\obj\Debug\festivalc.csproj.GenerateResource.Cache
+D:\git\Festival-management\festivalC#\festivalc\bin\Debug\festivalc.exe.config
+D:\git\Festival-management\festivalC#\festivalc\obj\Debug\festivalc.exe
+D:\git\Festival-management\festivalC#\festivalc\obj\Debug\festivalc.pdb
+D:\git\Festival-management\festivalC#\festivalc\bin\Debug\festivalc.exe
+D:\git\Festival-management\festivalC#\festivalc\bin\Debug\festivalc.pdb
+D:\git\Festival-management\festivalC#\festivalc\bin\Debug\EntityFramework.dll
+D:\git\Festival-management\festivalC#\festivalc\bin\Debug\EntityFramework.SqlServer.dll
+D:\git\Festival-management\festivalC#\festivalc\bin\Debug\log4net.dll
+D:\git\Festival-management\festivalC#\festivalc\bin\Debug\System.Data.SQLite.dll
+D:\git\Festival-management\festivalC#\festivalc\bin\Debug\System.Data.SQLite.EF6.dll
+D:\git\Festival-management\festivalC#\festivalc\bin\Debug\System.Data.SQLite.Linq.dll
+D:\git\Festival-management\festivalC#\festivalc\bin\Debug\EntityFramework.xml
+D:\git\Festival-management\festivalC#\festivalc\bin\Debug\EntityFramework.SqlServer.xml
+D:\git\Festival-management\festivalC#\festivalc\bin\Debug\log4net.xml
+D:\git\Festival-management\festivalC#\festivalc\bin\Debug\System.Data.SQLite.xml
+D:\git\Festival-management\festivalC#\festivalc\obj\Debug\festivalc.csprojResolveAssemblyReference.cache
+D:\git\Festival-management\festivalC#\festivalc\obj\Debug\festivalc.gui.FestivalForm.resources
+D:\git\Festival-management\festivalC#\festivalc\obj\Debug\festivalc.LoginForm.resources
+D:\git\Festival-management\festivalC#\festivalc\obj\Debug\festivalc.Properties.Resources.resources
+D:\git\Festival-management\festivalC#\festivalc\obj\Debug\festivalc.csproj.GenerateResource.Cache
