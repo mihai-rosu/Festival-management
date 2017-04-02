@@ -12,13 +12,32 @@ namespace festivalc.repository
     {
         public BiletDBRepository() { }
 
+        public int size()
+        {
+            IDbConnection con = DBUtils.getConnection();
+
+            using (var comm = con.CreateCommand())
+            {
+                comm.CommandText = "select count(*) as [SIZE] from Bilet";
+
+                using (var dataR = comm.ExecuteReader())
+                {
+                    if (dataR.Read())
+                    {
+                        int size = dataR.GetInt32(0);
+                        return size;
+                    }
+                }
+            }
+            return -1;
+        }
         public Bilet findOne(int id)
         {
             IDbConnection con = DBUtils.getConnection();
 
             using (var comm = con.CreateCommand())
             {
-                comm.CommandText = "select idb,ids,pret from Bilet where idb=@idb";
+                comm.CommandText = "select * from Bilet where idb=@idb";
                 IDbDataParameter paramIdb = comm.CreateParameter();
                 paramIdb.ParameterName = "@idb";
                 paramIdb.Value = id;
@@ -30,8 +49,9 @@ namespace festivalc.repository
                     {
                         int idB = dataR.GetInt32(0);
                         int idS = dataR.GetInt32(1);
-                        double pret = dataR.GetDouble(2);
-                        Bilet bilet = new Bilet(idB, idS, pret);
+                        string cumparator = dataR.GetString(2);
+                        int cantitate = dataR.GetInt32(3);
+                        Bilet bilet = new Bilet(idB, idS, cumparator, cantitate);
                         return bilet;
                     }
                 }
@@ -53,8 +73,9 @@ namespace festivalc.repository
                     {
                         int idB = dataR.GetInt32(0);
                         int idS = dataR.GetInt32(1);
-                        double pret = dataR.GetDouble(2);
-                        Bilet bilet = new Bilet(idB, idS, pret);
+                        string cumparator = dataR.GetString(2);
+                        int cantitate = dataR.GetInt32(3);
+                        Bilet bilet = new Bilet(idB, idS, cumparator, cantitate);
                         biletR.Add(bilet);
                     }
                 }
@@ -68,7 +89,7 @@ namespace festivalc.repository
 
             using (var comm = con.CreateCommand())
             {
-                comm.CommandText = "insert into Bilet values (@idB, @idS, @pret)";
+                comm.CommandText = "insert into Bilet values (@idB, @idS, @cumparator, @cantitate)";
                 var paramId = comm.CreateParameter();
                 paramId.ParameterName = "@idB";
                 paramId.Value = entity.Id;
@@ -79,10 +100,15 @@ namespace festivalc.repository
                 paramIdS.Value = entity.IdS;
                 comm.Parameters.Add(paramIdS);
 
-                var paramPret = comm.CreateParameter();
-                paramPret.ParameterName = "@pret";
-                paramPret.Value = entity.Pret;
-                comm.Parameters.Add(paramPret);
+                var paramCumparator = comm.CreateParameter();
+                paramCumparator.ParameterName = "@cumparator";
+                paramCumparator.Value = entity.Cumparator;
+                comm.Parameters.Add(paramCumparator);
+
+                var paramCantitate = comm.CreateParameter();
+                paramCantitate.ParameterName = "@cantitate";
+                paramCantitate.Value = entity.Cantitate;
+                comm.Parameters.Add(paramCantitate);
 
                 var result = comm.ExecuteNonQuery();
                 if (result == 0)

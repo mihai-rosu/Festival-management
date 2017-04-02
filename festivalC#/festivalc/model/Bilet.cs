@@ -10,13 +10,15 @@ namespace festivalc.model
     {
         private int id;
         private int idS;
-        private double pret;
+        private string cumparator;
+        private int cantitate;
 
-        public Bilet(int id, int idS, double pret)
+        public Bilet(int id, int idS, string cumparator, int cantitate)
         {
             this.id = id;
             this.idS = idS;
-            this.pret = pret;
+            this.cumparator = cumparator;
+            this.cantitate = cantitate;
         }
 
         public int Id {
@@ -27,9 +29,14 @@ namespace festivalc.model
             get { return idS; }
             set { idS = value; }
         }
-        public double Pret {
-            get { return pret; }
-            set { pret = value; }
+        public string Cumparator {
+            get { return cumparator; }
+            set { cumparator = value; }
+        }
+        public int Cantitate
+        {
+            get { return cantitate; }
+            set { cantitate = value; }
         }
     }
 }

@@ -33,7 +33,7 @@ namespace festivalc.repository
                         string ora = dataR.GetString(3);
                         string locatie = dataR.GetString(4);
                         int nrlocuri = dataR.GetInt32(5);
-                        int locuriocupate = dataR.GetInt32(7);
+                        int locuriocupate = dataR.GetInt32(6);
                         Spectacol spectacol = new Spectacol(ids, ida, date, ora, locatie, nrlocuri, locuriocupate);
                         return spectacol;
                     }
@@ -75,7 +75,7 @@ namespace festivalc.repository
 
             using (var comm = con.CreateCommand())
             {
-                comm.CommandText = "insert into Spectacol values (@ids, @ida,@date,@locatie,@nrlocuri,@locuriocupate)";
+                comm.CommandText = "insert into Spectacol values (@ids, @ida,@date,@ora,@locatie,@nrlocuri,@locuriocupate)";
                 var paramId = comm.CreateParameter();
                 paramId.ParameterName = "@ids";
                 paramId.Value = entity.Id;
@@ -90,6 +90,11 @@ namespace festivalc.repository
                 paramDate.ParameterName = "@date";
                 paramDate.Value = entity.Date;
                 comm.Parameters.Add(paramDate);
+
+                var paramOra = comm.CreateParameter();
+                paramOra.ParameterName = "@ora";
+                paramOra.Value = entity.Ora;
+                comm.Parameters.Add(paramOra);
 
                 var paramLocatie = comm.CreateParameter();
                 paramLocatie.ParameterName = "@locatie";

@@ -59,6 +59,7 @@ namespace festivalc.gui
         private void FillSrcDataGridView(IEnumerable<Spectacol> spectacole)
         {
             var specTable = new DataTable();
+            specTable.Columns.Add(new DataColumn("ID", typeof(int)));
             specTable.Columns.Add(new DataColumn("Artist", typeof(string)));
             specTable.Columns.Add(new DataColumn("Locatia", typeof(string)));
             specTable.Columns.Add(new DataColumn("Ora", typeof(string)));
@@ -67,10 +68,11 @@ namespace festivalc.gui
             foreach (var s in spectacole)
             {
                 var row = specTable.NewRow();
-                row[0] = s.NumeArtist;
-                row[1] = s.Locatie;
-                row[2] = s.Ora.ToString();
-                row[3] = s.Locuridisponibile;
+                row[0] = s.Id;
+                row[1] = s.NumeArtist;
+                row[2] = s.Locatie;
+                row[3] = s.Ora.ToString();
+                row[4] = s.Locuridisponibile;
 
                 specTable.Rows.Add(row);
             }
@@ -104,6 +106,37 @@ namespace festivalc.gui
 
         private void cumparaButton_Click(object sender, EventArgs e)
         {
+            int id = service.getNextIDBilet();
+            String cumparator = cumparatorTextBox.Text;
+            if (!cumparator.Equals(""))
+            {
+                try
+                {
+                    var row = srcDataGridView.SelectedRows[0];
+                    int ids = Convert.ToInt32(row.Cells[0].Value);
+                    int cantitate = Convert.ToInt32(cantitateTextBox.Text);
+                    Bilet b = new Bilet(id, ids, cumparator, cantitate);
+                    Bilet saved = service.saveBilet(b);
+                    if (saved != null)
+                    {
+                        this.FillSpectacoleDataGridView(service.getAllSpectacole());
+                        srcDataGridView.DataSource = null;
+                    }
+                    else
+                    {
+                        showErrorMessage("Nu sunt locuri disponibile");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    showErrorMessage(ex.Message);
+                }
+            }
+            else
+            {
+                showErrorMessage("Field gol!");
+            }
+
 
         }
 

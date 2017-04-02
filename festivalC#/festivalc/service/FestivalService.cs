@@ -32,6 +32,29 @@ namespace festivalc.service
             return list;
         }
 
+        public int getNextIDBilet()
+        {
+            return biletRepo.size() + 1;
+        }
+
+        public Bilet saveBilet(Bilet b)
+        {
+            int idS = b.IdS;
+            Spectacol s = spectacolRepo.findOne(idS);
+            if (s.Locuridisponibile - b.Cantitate < 0)
+                return null;
+            else
+            {
+                s.Locuridisponibile = s.Locuridisponibile - b.Cantitate;
+                s.Locuriocupate = s.Locuriocupate + b.Cantitate;
+                spectacolRepo.delete(idS);
+                spectacolRepo.save(s);
+                biletRepo.save(b);
+                return b;
+            }
+        }
+
+
         public List<Spectacol> getSpectacoleDate(String data)
         {
             IEnumerable<Spectacol> list = spectacolRepo.findAll();
