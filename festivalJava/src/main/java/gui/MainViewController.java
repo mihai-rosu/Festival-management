@@ -1,7 +1,5 @@
 package gui;
 
-import controller.FestivalController;
-import controller.LoginController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +15,7 @@ import model.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import repository.*;
+import service.FestivalService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ import java.util.ArrayList;
  */
 public class MainViewController {
 
-    private FestivalController service;
+    private FestivalService service;
     private ObservableList<Spectacol> modelAll;
     private ObservableList<Spectacol> modelSrc;
 
@@ -113,7 +112,7 @@ public class MainViewController {
         });
     }
 
-    public void setService(FestivalController service) {
+    public void setService(FestivalService service) {
         this.service = service;
         this.modelAll = FXCollections.observableArrayList(service.getAllSpectacole());
         spectacoleTableView.setItems(modelAll);
@@ -132,16 +131,12 @@ public class MainViewController {
             e1.printStackTrace();
         }
 
-        ApplicationContext context = new AnnotationConfigApplicationContext(RepoConfig.class);
-        UserJdbcRepository userRepo = context.getBean(UserJdbcRepository.class);
-        LoginController loginController = new LoginController(userRepo);
-
         Scene scene = new Scene(root);
         Stage mainStage = new Stage();
         mainStage.setTitle("Login");
         mainStage.setScene(scene);
         LoginViewController loginViewCtrl = loader.getController();
-        loginViewCtrl.setService(loginController);
+        loginViewCtrl.setService(service);
         mainStage.show();
     }
 
@@ -149,6 +144,7 @@ public class MainViewController {
     private void handleLogout() {
         Stage stage = (Stage) logoutButton.getScene().getWindow();
         stage.close();
+        service.logout();
         this.goToLogin();
     }
 

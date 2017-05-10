@@ -1,7 +1,9 @@
 package model;
 
 
-public class Bilet implements HasId<Integer> {
+import java.io.Serializable;
+
+public class Bilet implements HasId<Integer>,Serializable {
     private Integer id;
     private Integer idS;
     private String cumparator;

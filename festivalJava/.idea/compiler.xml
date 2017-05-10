@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="festival_main" target="1.8" />
       <module name="festival_test" target="1.8" />
+      <module name="Networking_main" target="1.8" />
+      <module name="Networking_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

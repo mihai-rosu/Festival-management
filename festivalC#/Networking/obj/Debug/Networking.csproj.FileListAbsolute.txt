@@ -1,0 +1,6 @@
+D:\git\Festival-management\festivalC#\Networking\obj\Debug\Networking.csprojResolveAssemblyReference.cache
+D:\git\Festival-management\festivalC#\Networking\bin\Debug\Networking.dll.config
+D:\git\Festival-management\festivalC#\Networking\bin\Debug\Networking.dll
+D:\git\Festival-management\festivalC#\Networking\bin\Debug\Networking.pdb
+D:\git\Festival-management\festivalC#\Networking\obj\Debug\Networking.dll
+D:\git\Festival-management\festivalC#\Networking\obj\Debug\Networking.pdb

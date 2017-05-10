@@ -1,5 +1,4 @@
 ﻿using festivalc.model;
-using festivalc.repository;
 using festivalc.service;
 using System;
 using System.Collections.Generic;
@@ -15,13 +14,14 @@ namespace festivalc.gui
 {
     public partial class FestivalForm : Form
     {
-        FestivalService service;
 
-        public FestivalForm(FestivalService service)
+        Service service;
+
+        public FestivalForm(Service service)
         {
             this.service = service;
             InitializeComponent();
-            FillSpectacoleDataGridView(service.getAllSpectacole());
+            FillSpectacoleDataGridView(service.GetAllSpectacole());
         }
 
         private void FillSpectacoleDataGridView(IEnumerable<Spectacol> spectacole)
@@ -89,7 +89,7 @@ namespace festivalc.gui
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             String data = searchDateTimePicker.Value.ToString("yyyy-MM-dd");
-            IEnumerable <Spectacol> lista = service.getSpectacoleDate(data);
+            IEnumerable <Spectacol> lista = service.GetSpectacoleDate(data);
 
             if (!lista.Any() == true)
                 showErrorMessage("Nu sunt spectacole in  aceea data !");
@@ -106,7 +106,7 @@ namespace festivalc.gui
 
         private void cumparaButton_Click(object sender, EventArgs e)
         {
-            int id = service.getNextIDBilet();
+            int id = service.GetNextIDBilet();
             String cumparator = cumparatorTextBox.Text;
             if (!cumparator.Equals(""))
             {
@@ -116,10 +116,10 @@ namespace festivalc.gui
                     int ids = Convert.ToInt32(row.Cells[0].Value);
                     int cantitate = Convert.ToInt32(cantitateTextBox.Text);
                     Bilet b = new Bilet(id, ids, cumparator, cantitate);
-                    Bilet saved = service.saveBilet(b);
+                    Bilet saved = service.SaveBilet(b);
                     if (saved != null)
                     {
-                        this.FillSpectacoleDataGridView(service.getAllSpectacole());
+                        this.FillSpectacoleDataGridView(service.GetAllSpectacole());
                         srcDataGridView.DataSource = null;
                     }
                     else
@@ -142,10 +142,9 @@ namespace festivalc.gui
 
         private void logoutButton_Click(object sender, EventArgs e)
         {
+            service.logout();
             this.Hide();
-            UserDBRepository userRepo = new UserDBRepository();
-            LoginService loginService = new LoginService(userRepo);
-            LoginForm loginForm = new LoginForm(loginService);
+            LoginForm loginForm = new LoginForm(service);
             loginForm.Show();
         }
     }

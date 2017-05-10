@@ -1,7 +1,9 @@
 package model;
 
 
-public class Spectacol implements HasId<Integer> {
+import java.io.Serializable;
+
+public class Spectacol implements HasId<Integer>,Serializable {
     private Integer id;
     private Integer idA;
     private String numeArtist;

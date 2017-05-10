@@ -1,7 +1,5 @@
 package gui;
 
-import controller.FestivalController;
-import controller.LoginController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +12,7 @@ import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import repository.*;
+import service.FestivalService;
 
 /**
  * Created by rmihai on 28.03.2017.
@@ -27,7 +26,7 @@ public class LoginViewController {
     @FXML
     private Button loginButton;
 
-    LoginController loginController;
+    private FestivalService service;
 
     public LoginViewController() {
     }
@@ -36,8 +35,8 @@ public class LoginViewController {
     private void initialize() {
     }
 
-    public void setService(LoginController ctrl) {
-        this.loginController = ctrl;
+    public void setService(FestivalService service) {
+        this.service = service;
     }
 
     public void createMainWindow(){
@@ -52,18 +51,12 @@ public class LoginViewController {
             e1.printStackTrace();
         }
 
-        ApplicationContext context = new AnnotationConfigApplicationContext(RepoConfig.class);
-        ArtistJdbcRepository arepo = context.getBean(ArtistJdbcRepository.class);
-        BiletJdbcRepository brepo = context.getBean(BiletJdbcRepository.class);
-        SpectacolJdbcRepository srepo = context.getBean(SpectacolJdbcRepository.class);
-        FestivalController festivalController = new FestivalController(arepo, brepo, srepo);
-
         Scene scene = new Scene(root);
         Stage mainStage = new Stage();
         mainStage.setTitle("Festival");
         mainStage.setScene(scene);
         MainViewController mainViewCtrl = loader.getController();
-        mainViewCtrl.setService(festivalController);
+        mainViewCtrl.setService(service);
         mainStage.show();
     }
 
@@ -71,7 +64,7 @@ public class LoginViewController {
         try {
             String user = userTextField.getText();
             String pass = passwordTextField.getText();
-            loginController.login(user, pass);
+            service.login(user, pass);
             this.createMainWindow();
         } catch (Exception e) {
             showErrorMessage(e.getMessage());

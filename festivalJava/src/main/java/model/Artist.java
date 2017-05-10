@@ -1,7 +1,9 @@
 package model;
 
 
-public class Artist implements HasId<Integer> {
+import java.io.Serializable;
+
+public class Artist implements HasId<Integer>, Serializable{
     private Integer id;
     private String nume;
 

@@ -58,3 +58,5 @@ D:\git\Festival-management\festivalC#\festivalc\obj\Debug\festivalc.gui.Festival
 D:\git\Festival-management\festivalC#\festivalc\obj\Debug\festivalc.LoginForm.resources
 D:\git\Festival-management\festivalC#\festivalc\obj\Debug\festivalc.Properties.Resources.resources
 D:\git\Festival-management\festivalC#\festivalc\obj\Debug\festivalc.csproj.GenerateResource.Cache
+D:\git\Festival-management\festivalC#\festivalc\bin\Debug\Networking.dll
+D:\git\Festival-management\festivalC#\festivalc\bin\Debug\Networking.pdb
